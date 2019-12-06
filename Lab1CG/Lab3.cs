@@ -59,15 +59,22 @@ namespace Lab1CG
 
 
             if (CheckConvex(polygon))
+            {
                 if (CheckPointInclusion(polygon, InclusionPoint))
                     Console.WriteLine("Test Inclusion Point is inside the polygon.");
                 else
                     Console.WriteLine("Test Inclusion Point is outside the polygon.");
+            }
+            else
+                Console.WriteLine("Polygon is not convex.");
+
 
             if (RayCasting(polygon, RayCastingPoint) % 2 == 1)
                 Console.WriteLine("Ray Casting:Point is inside the polygon");
             else
                 Console.WriteLine("Ray Casting:Point is outside the polygon");
+
+            Console.ReadKey();
         }
 
         public static bool CheckConvex(Polygon p)
@@ -75,25 +82,30 @@ namespace Lab1CG
             bool result = true;
             foreach (Point point in p.Vertex)
             {
-                if (p.Vertex.Find(point).Next.Next.Value != p.Vertex.Last())
+                var nextPoint = p.Vertex.Find(point).Next;
+                if (nextPoint !=null)
                 {
-                    string turn = Lab2.turnTest(point, p.Vertex.Find(point).Next.Value, p.Vertex.Find(point).Next.Next.Value);
-                    if (turn != "left")
+                    if (point == p.Vertex.Find(p.Vertex.Last()).Previous.Value)
                     {
-                        result = false;
-                        break;
+                        string turn = Lab2.turnTest(point, p.Vertex.Last(), p.Vertex.First());
+                        if (turn != "left")
+                        {
+                            result = false;
+                            break;
+                        }
                     }
-                }
-                else if (point != p.Vertex.Last())
-                {
-                    string turn = Lab2.turnTest(point, p.Vertex.Find(point).Next.Value, p.Vertex.First());
-                    if (turn != "left")
+                    else
                     {
-                        result = false;
-                        break;
+                        string turn = Lab2.turnTest(point, p.Vertex.Find(point).Next.Value, p.Vertex.Find(point).Next.Next.Value);
+                        if (turn != "left")
+                        {
+                            result = false;
+                            break;
+                        }
                     }
+                    
                 }
-                else if(point==p.Vertex.Last())
+                else
                 {
                     string turn = Lab2.turnTest(p.Vertex.Last(), p.Vertex.First(),p.Vertex.Find(p.Vertex.First()).Next.Value);
                     if (turn != "left")
@@ -147,7 +159,7 @@ namespace Lab1CG
 
             foreach (Point p in polygon.Vertex)
             {
-                if (polygon.Vertex.Find(p).Next.Value != null)
+                if (polygon.Vertex.Find(p).Next != null)
                 {
                     line2.Point1 = p;
                     line2.Point2 = polygon.Vertex.Find(p).Next.Value;
