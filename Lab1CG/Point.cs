@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1CG
 {
-    class Point
+   public class Point
     {
      public int x, y;
         public Point()
