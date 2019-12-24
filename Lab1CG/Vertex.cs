@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace Lab1CG
 {
     //https://www.c-sharpcorner.com/article/linked-list-implementation-in-c-sharp/
-    public class Vertex
+    public class Vertices
     {
-        public Point Point;
-        public Point Next;
-        public Point Prev;
+        static int noOfDLinkedList = 0;
+        public Point Vertex;
+        public Vertices nextVertices;
+        public Vertices previousVertices;
 
-        public Vertex(Point p)
+        public Vertices(Point Vertex)
         {
-            Point = p;
-            Next = null;
-            Prev = null;
+            this.Vertex = Vertex;
+            noOfDLinkedList++;
         }
     }
 }

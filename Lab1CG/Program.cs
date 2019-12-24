@@ -10,20 +10,23 @@ namespace Lab1CG
     {
         static void Main(string[] args)
         {
+
             try
             {
-               // Lab1.getData();
-               // Lab2.getData();
-                Lab3.getData();
-              
+                // Lab1.getData();
+                 //Lab2.getData();
+               // Lab2.getDataInt();
+
+                  Lab3.getData();
+
             }
 
             catch (Exception e)
-                {
+            {
                 Console.WriteLine("Error: " + e);
             }
-
-
         }
+
     }
 }
+

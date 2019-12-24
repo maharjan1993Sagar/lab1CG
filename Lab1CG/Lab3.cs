@@ -8,74 +8,78 @@ namespace Lab1CG
 {
    public static class Lab3
     {
-       
-        
-
         public static void getData()
         {
-            Polygon polygon=new Polygon();
-            Console.WriteLine("Enter no of vertices in polygon.");
-            int N = int.Parse(Console.ReadLine());
-
-            //Point[] points = new Point[N];
-
-            for (int i = 0; i < N; i++)
+            while (true)
             {
-                Point p = new Point();
+                Polygon polygon = new Polygon();
+                Console.WriteLine("Enter no of vertices in polygon.");
+                int N = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Enter Point of Polygon.");
-                string point = Console.ReadLine();
+                //Point[] points = new Point[N];
 
-                p.x = int.Parse(point.Split(',')[0]);
-                p.y = int.Parse(point.Split(',')[1]);
+                for (int i = 0; i < N; i++)
+                {
+                    Point p = new Point();
 
-               
-                //if (i == 0)
-                //{
-                //    Polygon.Vertex.AddFirst(p); 
-                //}
-                //else
-                //{
+                    Console.WriteLine("Enter Point of Polygon.");
+                    string point = Console.ReadLine();
+
+                    p.x = int.Parse(point.Split(',')[0]);
+                    p.y = int.Parse(point.Split(',')[1]);
+
+
+                    //if (i == 0)
+                    //{
+                    //    Polygon.Vertex.AddFirst(p); 
+                    //}
+                    //else
+                    //{
                     polygon.Vertex.AddLast(p);
-               // }
-            }
+                    // }
+                }
 
 
 
-            Console.WriteLine("Enter Point for Inclusion Test.");
-            string IncPoint = Console.ReadLine();
+                Console.WriteLine("Enter Point for Inclusion Test.");
+                string IncPoint = Console.ReadLine();
 
-            Console.WriteLine("Enter Point for Ray Casting.");
-            string RayPoint = Console.ReadLine();
+                Console.WriteLine("Enter Point for Ray Casting.");
+                string RayPoint = Console.ReadLine();
 
-            Point InclusionPoint = new Point();
-            Point RayCastingPoint = new Point();
+                Point InclusionPoint = new Point();
+                Point RayCastingPoint = new Point();
 
-            InclusionPoint.x = int.Parse(IncPoint.Split(',')[0]);
-            InclusionPoint.y = int.Parse(IncPoint.Split(',')[1]);
+                InclusionPoint.x = int.Parse(IncPoint.Split(',')[0]);
+                InclusionPoint.y = int.Parse(IncPoint.Split(',')[1]);
 
-            RayCastingPoint.x = int.Parse(RayPoint.Split(',')[0]);
-            RayCastingPoint.y = int.Parse(RayPoint.Split(',')[1]);
+                RayCastingPoint.x = int.Parse(RayPoint.Split(',')[0]);
+                RayCastingPoint.y = int.Parse(RayPoint.Split(',')[1]);
 
 
-            if (CheckConvex(polygon))
-            {
-                if (CheckPointInclusion(polygon, InclusionPoint))
-                    Console.WriteLine("Test Inclusion Point is inside the polygon.");
+                if (CheckConvex(polygon))
+                {
+                    Console.WriteLine("\n\n Given polygon is Convex.\n\n");
+
+
+                    if (CheckPointInclusion(polygon, InclusionPoint))
+                        Console.WriteLine("\n\nTest Inclusion Point is inside the polygon.\n\n");
+                    else
+                        Console.WriteLine("\n\nTest Inclusion Point is outside the polygon.\n\n");
+                }
                 else
-                    Console.WriteLine("Test Inclusion Point is outside the polygon.");
+                    Console.WriteLine("\n\nPolygon is not convex.\n\n");
+
+
+                if (RayCasting(polygon, RayCastingPoint) % 2 == 1)
+                    Console.WriteLine("\n\n Ray Casting:Point is inside the polygon\n\n");
+                else
+                    Console.WriteLine("\n\n Ray Casting:Point is outside the polygon\n\n");
+
+                Console.ReadKey();
             }
-            else
-                Console.WriteLine("Polygon is not convex.");
-
-
-            if (RayCasting(polygon, RayCastingPoint) % 2 == 1)
-                Console.WriteLine("Ray Casting:Point is inside the polygon");
-            else
-                Console.WriteLine("Ray Casting:Point is outside the polygon");
-
-            Console.ReadKey();
-        }
+        
+}
 
         public static bool CheckConvex(Polygon p)
         {
@@ -153,10 +157,10 @@ namespace Lab1CG
         public static int RayCasting(Polygon polygon, Point point)
         {
             int count = 0;
-            Point maxPoint = new Point { x = 600, y = 800 };
+            Point maxPoint = new Point { x = 2000+point.x, y = 1000+point.y };
             Line line1 = new Line { Point1 = point, Point2 = maxPoint };
             Line line2 = new Line();
-
+            string[] intersections = { "Proper", "Improper" };
             foreach (Point p in polygon.Vertex)
             {
                 if (polygon.Vertex.Find(p).Next != null)
@@ -171,7 +175,7 @@ namespace Lab1CG
                     line2.Point2 = polygon.Vertex.First();
                   
                 }
-                if (Lab2.CheckIntersection(line1, line2))
+                if (!String.IsNullOrEmpty(Lab2.CheckIntersection(line1, line2))&&!String.IsNullOrEmpty(Lab2.CheckIntersection(line2,line1)))
                     count++;
 
             }
