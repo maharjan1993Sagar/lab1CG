@@ -5,3 +5,5 @@ F:\Lab1CG\Lab1CG\obj\Debug\Lab1CG.csprojAssemblyReference.cache
 F:\Lab1CG\Lab1CG\obj\Debug\Lab1CG.csproj.CoreCompileInputs.cache
 F:\Lab1CG\Lab1CG\obj\Debug\Lab1CG.exe
 F:\Lab1CG\Lab1CG\obj\Debug\Lab1CG.pdb
+F:\Lab1CG\Lab1CG\obj\Debug\Lab1CG.Draw.resources
+F:\Lab1CG\Lab1CG\obj\Debug\Lab1CG.csproj.GenerateResource.cache

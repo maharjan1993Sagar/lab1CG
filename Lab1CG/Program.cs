@@ -14,10 +14,10 @@ namespace Lab1CG
             try
             {
                 // Lab1.getData();
-                 //Lab2.getData();
-               // Lab2.getDataInt();
+               //  Lab2.getData();
+               Lab2.getDataInt();
 
-                  Lab3.getData();
+                 // Lab3.getData();
 
             }
 

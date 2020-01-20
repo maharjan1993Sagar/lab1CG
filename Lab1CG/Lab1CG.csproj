@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,18 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Draw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Draw.Designer.cs">
+      <DependentUpon>Draw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lab1.cs" />
     <Compile Include="Lab2.cs" />
     <Compile Include="Lab3.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Point.cs" />
-    <Compile Include="Vertex.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Draw.resx">
+      <DependentUpon>Draw.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
